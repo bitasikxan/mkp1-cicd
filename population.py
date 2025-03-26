@@ -13,8 +13,10 @@ def read_population_data(file_path):
         return []
     return data
 
+
 def sort_by_area(data):
     return sorted(data, key=lambda x: x[1])
+
 
 def sort_by_population(data):
     return sorted(data, key=lambda x: x[2])
