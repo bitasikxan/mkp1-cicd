@@ -1,5 +1,6 @@
 from population import read_population_data, sort_by_area, sort_by_population
 
+
 def output_sorted(output, func, data):
     print(output)
     for entry in func(data):
