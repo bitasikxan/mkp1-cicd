@@ -14,3 +14,14 @@ def temp_file(tmp_path):
     file.write_text("Україна, 603628, 37730000\nАмерика, 42550000, 1035298985\nКитай, 9597000, 1411000000")
     return str(file)
 
+def test_read_population_data(temp_file):
+    data = read_population_data(temp_file)
+    assert len(data) == 3
+    assert data[0] == ("Україна", 603628, 37730000)
+
+@pytest.mark.parametrize("file_path, expected_len", [
+    ("nonexistent.txt", 0),
+    (temp_file, 3),
+])
+
+
