@@ -14,7 +14,9 @@ def sample_data():
 def temp_file(tmp_path):
     file = tmp_path / "test_data.txt"
     with open(file, 'w', encoding='utf-8') as f:
-        f.write("Україна, 603628, 37730000\nАмерика, 42550000, 1035298985\nКитай, 9597000, 1411000000")
+        f.write("Україна, 603628, 37730000\n"
+                "Америка, 42550000, 1035298985\n"
+                "Китай, 9597000, 1411000000")
     return str(file)
 
 
@@ -28,7 +30,6 @@ def test_read_population_data(temp_file):
     (False, 0),
     (True, 3),
 ])
-
 
 def test_read_population_data_parametrized(use_existing_file, expected_len, temp_file):
     file_path = temp_file if use_existing_file else "nonexistent.txt"
