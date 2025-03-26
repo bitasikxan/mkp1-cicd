@@ -24,4 +24,16 @@ def test_read_population_data(temp_file):
     (temp_file, 3),
 ])
 
+def test_read_population_data_parametrized(file_path, expected_len, temp_file):
+    data = read_population_data(file_path)
+    assert len(data) == expected_len
 
+def test_sort_by_area(sample_data):
+    sorted_data = sort_by_area(sample_data)
+    assert sorted_data[0][1] == 603628
+    assert sorted_data[-1][1] == 42550000
+
+def test_sort_by_population(sample_data):
+    sorted_data = sort_by_population(sample_data)
+    assert sorted_data[0][2] == 37730000  # Poland has the smallest population
+    assert sorted_data[-1][2] == 1411000000
