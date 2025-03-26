@@ -30,7 +30,6 @@ def test_read_population_data(temp_file):
     (False, 0),
     (True, 3),
 ])
-
 def test_read_population_data_parametrized(use_existing_file, expected_len, temp_file):
     file_path = temp_file if use_existing_file else "nonexistent.txt"
     data = read_population_data(file_path)
