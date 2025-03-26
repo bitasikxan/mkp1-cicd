@@ -11,7 +11,8 @@ def sample_data():
 @pytest.fixture
 def temp_file(tmp_path):
     file = tmp_path / "test_data.txt"
-    file.write_text("Україна, 603628, 37730000\nАмерика, 42550000, 1035298985\nКитай, 9597000, 1411000000")
+    with open(file, 'w', encoding='utf-8') as f:
+        f.write("Україна, 603628, 37730000\nАмерика, 42550000, 1035298985\nКитай, 9597000, 1411000000")
     return str(file)
 
 def test_read_population_data(temp_file):
@@ -19,12 +20,13 @@ def test_read_population_data(temp_file):
     assert len(data) == 3
     assert data[0] == ("Україна", 603628, 37730000)
 
-@pytest.mark.parametrize("file_path, expected_len", [
-    ("nonexistent.txt", 0),
-    (temp_file, 3),
+@pytest.mark.parametrize("use_existing_file, expected_len", [
+    (False, 0),
+    (True, 3),
 ])
 
-def test_read_population_data_parametrized(file_path, expected_len, temp_file):
+def test_read_population_data_parametrized(use_existing_file, expected_len, temp_file):
+    file_path = temp_file if use_existing_file else "nonexistent.txt"
     data = read_population_data(file_path)
     assert len(data) == expected_len
 
