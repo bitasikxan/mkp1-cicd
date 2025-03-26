@@ -1,7 +1,7 @@
 def read_population_data(file_path):
     data = []
     try:
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='UTF-8') as file:
             for line in file:
                 name, area, population = line.strip().split(',')
                 data.append((name.strip(), int(area.strip()), int(population.strip())))
@@ -14,7 +14,7 @@ def read_population_data(file_path):
     return data
 
 def sort_by_area(data):
-    return sorted(data, key=data[1])
+    return sorted(data, key=lambda x: x[1])
 
 def sort_by_population(data):
-    return sorted(data, key=data[2])
+    return sorted(data, key=lambda x: x[2])
